@@ -5,14 +5,17 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "ENABLE_FILE_SYSTEM_API=1 astro build",
-    "preview": "astro preview"
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "netlify deploy"
   },
   "devDependencies": {
+    "@astrojs/renderer-vue": "^0.4.0",
     "astro": "^1.0.0-beta.7",
-    "@astrojs/renderer-vue": "^0.4.0"
+    "netlify": "^11.0.1"
   },
   "dependencies": {
+    "@astrojs/netlify": "^0.2.1",
     "@astrojs/vercel": "^0.1.1",
     "@astrojs/vue": "^0.1.1"
   }

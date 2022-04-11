@@ -1,5 +1,5 @@
 import vue from "@astrojs/vue";
-import vercel from "@astrojs/vercel";
+import netlify from "@astrojs/netlify/functions";
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
@@ -8,5 +8,5 @@ export default defineConfig({
   integrations: [
     vue()
   ],
-  adapter: vercel()
+  adapter: netlify()
 });
