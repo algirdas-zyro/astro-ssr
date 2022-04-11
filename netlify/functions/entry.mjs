@@ -1,8 +1,6 @@
 import * as adapter from '@astrojs/netlify/netlify-functions.js';
 import shorthash from 'shorthash';
 import serializeJavaScript from 'serialize-javascript';
-import * as $$module1$3 from 'shiki';
-import { getHighlighter } from 'shiki';
 import { ref, mergeProps, useSSRContext, defineComponent, h, createSSRApp } from 'vue';
 import { ssrRenderAttrs, ssrInterpolate, renderToString as renderToString$1 } from 'vue/server-renderer';
 
@@ -683,162 +681,6 @@ var global$2 = '';
 
 var home$1 = '';
 
-var Tour_astro_astro_type_style_index_0_lang = '';
-
-const $$metadata$2 = createMetadata("/node_modules/astro/components/Code.astro", { modules: [{ module: $$module1$3, specifier: "shiki", assert: {} }, { module: $$module1$3, specifier: "shiki", assert: {} }], hydratedComponents: [], clientOnlyComponents: [], hydrationDirectives: /* @__PURE__ */ new Set([]), hoisted: [] });
-const $$Astro$4 = createAstro("/node_modules/astro/components/Code.astro", "https://astro.build", "file:///Users/algirdastamasauskas/zyro/astro-ssr/");
-const $$Code = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$4, $$props, $$slots);
-  Astro2.self = $$Code;
-  const { code, lang = "plaintext", theme = "github-dark", wrap = false } = Astro2.props;
-  function repairShikiTheme(html2) {
-    html2 = html2.replace('<pre class="shiki"', '<pre is:raw class="astro-code"');
-    html2 = html2.replace(/style="(background-)?color: var\(--shiki-/g, 'style="$1color: var(--astro-code-');
-    if (wrap === false) {
-      html2 = html2.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto;"');
-    } else if (wrap === true) {
-      html2 = html2.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"');
-    }
-    return html2;
-  }
-  const highlighter = await getHighlighter({
-    theme,
-    langs: typeof lang !== "string" ? [lang] : void 0
-  });
-  const _html = highlighter.codeToHtml(code, { lang: typeof lang === "string" ? lang : lang.id });
-  const html = repairShikiTheme(_html);
-  return render`${renderComponent($$result, "Fragment", Fragment, {}, { "default": () => render`${markHTMLString(html)}` })}
-`;
-});
-
-var $$module1$2 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  $$metadata: $$metadata$2,
-  'default': $$Code
-}, Symbol.toStringTag, { value: 'Module' }));
-
-var Debug_astro_astro_type_style_index_0_lang = '';
-
-createMetadata("/node_modules/astro/components/Debug.astro", { modules: [{ module: $$module1$2, specifier: "./Code.astro", assert: {} }], hydratedComponents: [], clientOnlyComponents: [], hydrationDirectives: /* @__PURE__ */ new Set([]), hoisted: [] });
-const $$Astro$3 = createAstro("/node_modules/astro/components/Debug.astro", "https://astro.build", "file:///Users/algirdastamasauskas/zyro/astro-ssr/");
-const $$Debug = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$3, $$props, $$slots);
-  Astro2.self = $$Debug;
-  const key = Object.keys(Astro2.props)[0];
-  const value = Astro2.props[key];
-  const STYLES = [];
-  for (const STYLE of STYLES)
-    $$result.styles.add(STYLE);
-  return render`<div class="debug astro-7HSJXGCA">
-	<div class="debug-header astro-7HSJXGCA">
-		<h2 class="debug-title astro-7HSJXGCA"><span class="debug-label astro-7HSJXGCA">Debug</span> <span class="debug-name astro-7HSJXGCA">"${key}"</span></h2>
-	</div>
-
-	${renderComponent($$result, "Code", $$Code, { "code": JSON.stringify(value, null, 2), "class": "astro-7HSJXGCA" })}
-</div>
-
-
-`;
-});
-
-createMetadata("/node_modules/astro/components/Markdown.astro", { modules: [], hydratedComponents: [], clientOnlyComponents: [], hydrationDirectives: /* @__PURE__ */ new Set([]), hoisted: [] });
-const $$Astro$2 = createAstro("/node_modules/astro/components/Markdown.astro", "https://astro.build", "file:///Users/algirdastamasauskas/zyro/astro-ssr/");
-const $$Markdown = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$2, $$props, $$slots);
-  Astro2.self = $$Markdown;
-  const dedent = (str) => {
-    const _str = str.split("\n").filter((s) => s.trimStart().length > 0);
-    if (_str.length === 0) {
-      return str.trimStart();
-    }
-    const trimmedSpace = _str[0].replace(_str[0].trimStart(), "");
-    return str.split("\n").map((ln) => ln.startsWith(trimmedSpace) ? ln.replace(trimmedSpace, "") : ln).join("\n");
-  };
-  let { content, class: className } = Astro2.props;
-  let html = null;
-  let htmlContent = "";
-  if (!content) {
-    content = await Astro2.slots.render("default");
-    if (content !== void 0 && content !== null) {
-      content = dedent(content);
-    }
-  }
-  if (content) {
-    htmlContent = await Astro2.__renderMarkdown(content, {
-      mode: "md",
-      $: {
-        scopedClassName: className
-      }
-    });
-  }
-  html = htmlContent;
-  return render`${html ? render`${renderComponent($$result, "Fragment", Fragment, {}, { "default": () => render`${markHTMLString(html)}` })}` : render`${renderSlot($$result, $$slots["default"])}`}
-`;
-});
-
-var $$module1$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  Code: $$Code,
-  Debug: $$Debug,
-  Markdown: $$Markdown
-}, Symbol.toStringTag, { value: 'Module' }));
-
-const $$metadata$1 = createMetadata("/src/components/Tour.astro", { modules: [{ module: $$module1$1, specifier: "astro/components", assert: {} }], hydratedComponents: [], clientOnlyComponents: [], hydrationDirectives: /* @__PURE__ */ new Set([]), hoisted: [] });
-const $$Astro$1 = createAstro("/src/components/Tour.astro", "https://astro.build", "file:///Users/algirdastamasauskas/zyro/astro-ssr/");
-const $$Tour = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
-  Astro2.self = $$Tour;
-  const STYLES = [];
-  for (const STYLE of STYLES)
-    $$result.styles.add(STYLE);
-  return render`<article class="astro-IZYAIJ4S">
-	<div class="banner astro-IZYAIJ4S">
-		<p class="astro-IZYAIJ4S"><strong class="astro-IZYAIJ4S">🧑‍🚀 Seasoned astronaut?</strong> Delete this file. Have fun!</p>
-	</div>
-
-	<section class="astro-IZYAIJ4S">
-		${renderComponent($$result, "Markdown", $$Markdown, { "class": "astro-IZYAIJ4S" }, { "default": () => render`
-			## 🚀 Project Structure
-
-			Inside of your Astro project, you'll see the following folders and files:
-
-			\`\`\`
-			/
-			├── public/
-			│   └── favicon.ico
-			├── src/
-			│   ├── components/
-			│   │   └── Tour.astro
-			│   └── pages/
-			│       └── index.astro
-			└── package.json
-			\`\`\`
-
-			Astro looks for \`.astro\` or \`.md\` files in the \`src/pages/\` directory.
-			Each page is exposed as a route based on its file name.
-
-			There's nothing special about \`src/components/\`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-			Any static assets, like images, can be placed in the \`public/\` directory.
-		` })}
-	</section>
-
-	<section class="astro-IZYAIJ4S">
-		<h2 class="astro-IZYAIJ4S">👀 Want to learn more?</h2>
-		<p class="astro-IZYAIJ4S">Feel free to check <a href="https://github.com/withastro/astro" class="astro-IZYAIJ4S">our documentation</a> or jump into our <a href="https://astro.build/chat" class="astro-IZYAIJ4S">Discord server</a>.</p>
-	</section>
-</article>
-
-
-`;
-});
-
-var $$module3 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  $$metadata: $$metadata$1,
-  'default': $$Tour
-}, Symbol.toStringTag, { value: 'Module' }));
-
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -879,7 +721,7 @@ _sfc_main.setup = (props, ctx) => {
 };
 var VueCounter = /*#__PURE__*/_export_sfc(_sfc_main, [['ssrRender',_sfc_ssrRender]]);
 
-var $$module4 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+var $$module3 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   'default': VueCounter
 }, Symbol.toStringTag, { value: 'Module' }));
@@ -898,16 +740,16 @@ var $$module2 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   'default': home
 }, Symbol.toStringTag, { value: 'Module' }));
 
-const $$metadata = createMetadata("/src/pages/index.astro", { modules: [{ module: $$module1, specifier: "../styles/global.css", assert: {} }, { module: $$module2, specifier: "../styles/home.css", assert: {} }, { module: $$module3, specifier: "../components/Tour.astro", assert: {} }, { module: $$module4, specifier: "../components/VueCounter.vue", assert: {} }], hydratedComponents: [VueCounter], clientOnlyComponents: [], hydrationDirectives: /* @__PURE__ */ new Set(["visible"]), hoisted: [] });
-const $$Astro = createAstro("/src/pages/index.astro", "https://astro.build", "file:///Users/algirdastamasauskas/zyro/astro-ssr/");
+const $$metadata$1 = createMetadata("/src/pages/index.astro", { modules: [{ module: $$module1, specifier: "../styles/global.css", assert: {} }, { module: $$module2, specifier: "../styles/home.css", assert: {} }, { module: $$module3, specifier: "../components/VueCounter.vue", assert: {} }], hydratedComponents: [VueCounter], clientOnlyComponents: [], hydrationDirectives: /* @__PURE__ */ new Set(["visible"]), hoisted: [] });
+const $$Astro$1 = createAstro("/src/pages/index.astro", "https://astro.build", "file:///Users/algirdastamasauskas/zyro/astro-ssr/");
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
-  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  const Astro2 = $$result.createAstro($$Astro$1, $$props, $$slots);
   Astro2.self = $$Index;
   let title = "My Astro Site";
   const STYLES = [];
   for (const STYLE of STYLES)
     $$result.styles.add(STYLE);
-  return render`<html lang="en" class="astro-EQWO3NO6">
+  return render`<html lang="en" class="astro-66QZJLCU">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
@@ -918,15 +760,13 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
 	
 <!--astro:head--></head>
 <body>
-	<main class="astro-EQWO3NO6">
-		<header class="astro-EQWO3NO6">
-			<div class="astro-EQWO3NO6">
-				<img width="60" height="80" src="/assets/logo.svg" alt="Astro logo" class="astro-EQWO3NO6">
-				<h1 class="astro-EQWO3NO6">Welcome to <a href="https://astro.build/" class="astro-EQWO3NO6">Astro</a></h1>
+	<main class="astro-66QZJLCU">
+		<header class="astro-66QZJLCU">
+			<div class="astro-66QZJLCU">
+				<img width="60" height="80" src="/assets/logo.svg" alt="Astro logo" class="astro-66QZJLCU">
+				<h1 class="astro-66QZJLCU">Welcome to <a href="https://astro.build/" class="astro-66QZJLCU">Astro</a></h1>
 			</div>
 		</header>
-
-		${renderComponent($$result, "Tour", $$Tour, { "class": "astro-EQWO3NO6" })}
 
 		<!--
 
@@ -939,15 +779,67 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
 
 		-->
 
-		${renderComponent($$result, "VueCounter", VueCounter, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": $$metadata.getPath(VueCounter), "client:component-export": $$metadata.getExport(VueCounter), "class": "astro-EQWO3NO6" })}
+		${renderComponent($$result, "VueCounter", VueCounter, { "client:visible": true, "client:component-hydration": "visible", "client:component-path": $$metadata$1.getPath(VueCounter), "client:component-export": $$metadata$1.getExport(VueCounter), "class": "astro-66QZJLCU" })}
 	</main>
 </body></html>`;
 });
 
 var _page0 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
-  $$metadata: $$metadata,
+  $$metadata: $$metadata$1,
   'default': $$Index
+}, Symbol.toStringTag, { value: 'Module' }));
+
+var static_astro_astro_type_style_index_0_lang = '';
+
+const $$metadata = createMetadata("/src/pages/static.astro", { modules: [{ module: $$module1, specifier: "../styles/global.css", assert: {} }, { module: $$module2, specifier: "../styles/home.css", assert: {} }, { module: $$module3, specifier: "../components/VueCounter.vue", assert: {} }], hydratedComponents: [], clientOnlyComponents: [], hydrationDirectives: /* @__PURE__ */ new Set([]), hoisted: [] });
+const $$Astro = createAstro("/src/pages/static.astro", "https://astro.build", "file:///Users/algirdastamasauskas/zyro/astro-ssr/");
+const $$Static = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$Static;
+  let title = "My Astro Site";
+  const STYLES = [];
+  for (const STYLE of STYLES)
+    $$result.styles.add(STYLE);
+  return render`<html lang="en" class="astro-PSILBD2S">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>${title}</title>
+
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+	
+<!--astro:head--></head>
+<body>
+	<main class="astro-PSILBD2S">
+		<header class="astro-PSILBD2S">
+			<div class="astro-PSILBD2S">
+				<img width="60" height="80" src="/assets/logo.svg" alt="Astro logo" class="astro-PSILBD2S">
+				<h1 class="astro-PSILBD2S">Welcome to <a href="https://astro.build/" class="astro-PSILBD2S">Astro</a></h1>
+			</div>
+		</header>
+
+		<!--
+
+		You can also use imported framework components directly in your markup!
+		
+		Note: by default, these components are NOT interactive on the client.
+		The \`:visible\` directive tells Astro to make it interactive.
+		
+		See https://docs.astro.build/core-concepts/component-hydration/ 
+
+		-->
+
+		${renderComponent($$result, "VueCounter", VueCounter, { "class": "astro-PSILBD2S" })}
+	</main>
+</body></html>`;
+});
+
+var _page1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  $$metadata: $$metadata,
+  'default': $$Static
 }, Symbol.toStringTag, { value: 'Module' }));
 
 /**
@@ -985,7 +877,7 @@ var _renderer0 = {
 	renderToStaticMarkup,
 };
 
-const pageMap = new Map([['src/pages/index.astro', _page0],]);
+const pageMap = new Map([['src/pages/index.astro', _page0],['src/pages/static.astro', _page1],]);
 const renderers = [Object.assign({"name":"@astrojs/vue","clientEntrypoint":"@astrojs/vue/client.js","serverEntrypoint":"@astrojs/vue/server.js"}, { ssr: _renderer0 }),];
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -3851,7 +3743,7 @@ new RegExp(`\\.(${Array.from(STYLE_EXTENSIONS).map((s) => s.slice(1)).join("|")}
 const SCRIPT_EXTENSIONS = /* @__PURE__ */ new Set([".js", ".ts"]);
 new RegExp(`\\.(${Array.from(SCRIPT_EXTENSIONS).map((s) => s.slice(1)).join("|")})($|\\?)`);
 
-const _manifest = Object.assign(deserializeManifest({"routes":[{"file":"","links":["assets/asset.05c007cd.css"],"scripts":[],"routeData":{"type":"page","pattern":"^\\/$","segments":[],"params":[],"component":"src/pages/index.astro","pathname":"/"}}],"markdown":{"render":[null,{"drafts":false,"mode":"mdx","syntaxHighlight":"shiki","shikiConfig":{},"remarkPlugins":[],"rehypePlugins":[]}]},"pageMap":null,"renderers":[],"entryModules":{"/src/components/VueCounter.vue":"entry.bf49fce2.js","astro/client/visible.js":"entry.9125fc96.js","@astrojs/vue/client.js":"entry.ea182ef2.js","\u0000@astrojs-ssr-virtual-entry":"entry.mjs","astro:scripts/before-hydration.js":"data:text/javascript;charset=utf-8,//[no before-hydration script]"}}), {
+const _manifest = Object.assign(deserializeManifest({"routes":[{"file":"","links":["assets/asset.fb084347.css"],"scripts":[],"routeData":{"type":"page","pattern":"^\\/$","segments":[],"params":[],"component":"src/pages/index.astro","pathname":"/"}},{"file":"","links":["assets/asset.06bbb452.css"],"scripts":[],"routeData":{"type":"page","pattern":"^\\/static\\/?$","segments":[[{"content":"static","dynamic":false,"spread":false}]],"params":[],"component":"src/pages/static.astro","pathname":"/static"}}],"markdown":{"render":[null,{"drafts":false,"mode":"mdx","syntaxHighlight":"shiki","shikiConfig":{},"remarkPlugins":[],"rehypePlugins":[]}]},"pageMap":null,"renderers":[],"entryModules":{"/src/components/VueCounter.vue":"entry.bf49fce2.js","astro/client/visible.js":"entry.9125fc96.js","@astrojs/vue/client.js":"entry.ea182ef2.js","\u0000@astrojs-ssr-virtual-entry":"entry.mjs","astro:scripts/before-hydration.js":"data:text/javascript;charset=utf-8,//[no before-hydration script]"}}), {
 	pageMap: pageMap,
 	renderers: renderers
 });
