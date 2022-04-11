@@ -6,7 +6,7 @@ export default defineConfig({
   outDir: "./public",
   publicDir: "./static", // A folder of static files Astro will copy to the root. Useful for favicons, images, and other files that don’t need processing.
   integrations: [
-    vue(),
+    vue()
   ],
   adapter: vercel()
 });
